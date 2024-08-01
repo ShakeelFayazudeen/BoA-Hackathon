@@ -1,0 +1,254 @@
+{
+	"info": {
+		"_postman_id": "3672deba-9828-447d-96e5-50c7d82491c2",
+		"name": "CashAdvance",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30304455"
+	},
+	"item": [
+		{
+			"name": "Repayable Amount",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Eligible Amount",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get Token",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://10.200.1.4:8080/token",
+					"protocol": "http",
+					"host": [
+						"10",
+						"200",
+						"1",
+						"4"
+					],
+					"port": "8080",
+					"path": [
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Consent",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJNYWluIiwib3JnIjoidG9yY2hiZWFyZXJzLmNvbSIsImlzcyI6Imh0dHBzOi8vYXBpLnNhbmRib3gubmF0d2VzdC5jb20iLCJ0b2tlbl90eXBlIjoiQUNDRVNTX1RPS0VOIiwiZXh0ZXJuYWxfY2xpZW50X2lkIjoiM2U1elRLUXhvYXQyWi1pTWVhV0ktQTRvbVhnZk5Rb1pQSWk0UmJvYVdXMD0iLCJjbGllbnRfaWQiOiJiZTRkNTk3OC1mODE0LTQ5NzUtOWY4Ni00NjEzNjMwYmExMmYiLCJtYXhfYWdlIjo4NjQwMCwiYXVkIjoiYmU0ZDU5NzgtZjgxNC00OTc1LTlmODYtNDYxMzYzMGJhMTJmIiwic2NvcGUiOiJhY2NvdW50cyIsImV4cCI6MTcyMjQ5MzkwMywiaWF0IjoxNzIyNDkzMzAzLCJqdGkiOiJhZjg0MjRiZS0xNjc0LTRjNjMtYWYzMi1lZWIwMDBiYzFlMjMiLCJ0ZW5hbnQiOiJOYXRXZXN0In0.JgH4URg35pqQOd35Tk4LDYnaFjK1mYc-h_B8BLeZaNXQhRdRIlk33aaGg8mDXLBZwa9Lx0vR_NRoT2okYgNG43MyTy7C58aWndr9POHoBhsnJfgKCUYw_1rBDPyCwgQMi-a4AnjTtE_2KUnoiD3jHWCNhJDTlvPj6IeVsrHF6jHHIGbfeaekMTzcCq5DuCbBvB5WN4C0Y6VARdArk6EgoFnFvzH2inPTH4iJmXvNyVljxdSMP3x0u2_y7Ra75LTtEtYhhkgnFWLd34Nocnlq81zpAun3t2qnUYoxEexXBawNHetk3xwVZSZ2yse_WqMWdAFj4v0aVq3dqSrOYjAU9A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"Data\": {\r\n    \"Permissions\": [\r\n      \"ReadAccountsDetail\",\r\n      \"ReadBalances\",\r\n      \"ReadTransactionsCredits\",\r\n      \"ReadTransactionsDebits\",\r\n      \"ReadTransactionsDetail\"\r\n    ]\r\n  },\r\n  \"Risk\": {}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.200.1.4:8080/account-access-consents",
+					"protocol": "http",
+					"host": [
+						"10",
+						"200",
+						"1",
+						"4"
+					],
+					"port": "8080",
+					"path": [
+						"account-access-consents"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authorize Consent",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"consentId\": \"ceebb607-033a-409e-bb62-53d659ec9add\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.200.1.4:8080/authorize",
+					"protocol": "http",
+					"host": [
+						"10",
+						"200",
+						"1",
+						"4"
+					],
+					"port": "8080",
+					"path": [
+						"authorize"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Exchange Code for Token",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Code",
+						"value": "f135b414-f63b-4393-b6d9-5103132d1c86",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://10.200.1.4:8080/refresh-token",
+					"protocol": "http",
+					"host": [
+						"10",
+						"200",
+						"1",
+						"4"
+					],
+					"port": "8080",
+					"path": [
+						"refresh-token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Accounts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJNYWluIiwib3JnIjoidG9yY2hiZWFyZXJzLmNvbSIsImlzcyI6Imh0dHBzOi8vYXBpLnNhbmRib3gubmF0d2VzdC5jb20iLCJ0b2tlbl90eXBlIjoiQUNDRVNTX1RPS0VOIiwiZXh0ZXJuYWxfY2xpZW50X2lkIjoiM2U1elRLUXhvYXQyWi1pTWVhV0ktQTRvbVhnZk5Rb1pQSWk0UmJvYVdXMD0iLCJjbGllbnRfaWQiOiJiZTRkNTk3OC1mODE0LTQ5NzUtOWY4Ni00NjEzNjMwYmExMmYiLCJtYXhfYWdlIjo4NjQwMCwiYXVkIjoiYmU0ZDU5NzgtZjgxNC00OTc1LTlmODYtNDYxMzYzMGJhMTJmIiwidXNlcl9pZCI6IjEyMzQ1Njc4OTAxMkB0b3JjaGJlYXJlcnMuY29tIiwiZ3JhbnRfaWQiOiJmODhiNjU5NS1hZjZjLTQzMzctYTI4OS04MDliM2E1N2ZhYWQiLCJzY29wZSI6ImFjY291bnRzIG9wZW5pZCIsImNvbnNlbnRfcmVmZXJlbmNlIjoiNjliNmViMjYtYjgwYS00NDJkLWEyZDMtMDc1NzlkYTZiNjU1IiwiZXhwIjoxNzIyNDk0MDU2LCJpYXQiOjE3MjI0OTM0NTYsImp0aSI6IjYzZTI1MDUyLTgzMmUtNDQwNy1hNTQwLThhY2YyNTg5M2I3ZiIsInRlbmFudCI6Ik5hdFdlc3QifQ.O13l7csBvi9YpmCcD0mBNcTtYjWpJS57Gy1LIVdfrbYGF1eUc7kdkcnGAGHufp0kKe4yGdMgHgWZf0VLr33D-7aa8-XnNN1bsCkgegJZ8m80oLzWuj5yGBkausQKQJ8q9FLrhClkfYkxfQV8lKB2wMKfnTQu797DIk-sb8sDCxOtlcm7LEcLwAHNqIREK8CRyZJLSd-M607HaRRrryKJzKhj_OFYI-8l_VDZ7uSO6XxPV3n9zVP8JQDC4mkcaWuQsqpkJ64O9SgOUWUpmrvIW1QZIUB5pSOUY9F4QUnx_-iJRe6e3yQ0tewf1mlBg9vNs7Qz9KpQ93i7tX68qmqaAw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://10.200.1.4:8080/accounts",
+					"protocol": "http",
+					"host": [
+						"10",
+						"200",
+						"1",
+						"4"
+					],
+					"port": "8080",
+					"path": [
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Accounts With Token APIs Chained",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJNYWluIiwib3JnIjoidG9yY2hiZWFyZXJzLmNvbSIsImlzcyI6Imh0dHBzOi8vYXBpLnNhbmRib3gubmF0d2VzdC5jb20iLCJ0b2tlbl90eXBlIjoiQUNDRVNTX1RPS0VOIiwiZXh0ZXJuYWxfY2xpZW50X2lkIjoiM2U1elRLUXhvYXQyWi1pTWVhV0ktQTRvbVhnZk5Rb1pQSWk0UmJvYVdXMD0iLCJjbGllbnRfaWQiOiJiZTRkNTk3OC1mODE0LTQ5NzUtOWY4Ni00NjEzNjMwYmExMmYiLCJtYXhfYWdlIjo4NjQwMCwiYXVkIjoiYmU0ZDU5NzgtZjgxNC00OTc1LTlmODYtNDYxMzYzMGJhMTJmIiwidXNlcl9pZCI6IjEyMzQ1Njc4OTAxMkB0b3JjaGJlYXJlcnMuY29tIiwiZ3JhbnRfaWQiOiI0NDJhMWY1ZS03YTk2LTRkZDgtOWM2Mi0xM2IyZWM4OTE0YzYiLCJzY29wZSI6ImFjY291bnRzIG9wZW5pZCIsImNvbnNlbnRfcmVmZXJlbmNlIjoiOThkNmU0NjctOWNlMy00MTQ2LTkwNDMtMGYyYjI0MjFiZDgxIiwiZXhwIjoxNzIyNDA0NzIxLCJpYXQiOjE3MjI0MDQxMjEsImp0aSI6IjM0YzEzMWY2LTkyODItNDk5MC05YmQyLWIwODk4YWFiOGUzOSIsInRlbmFudCI6Ik5hdFdlc3QifQ.M1lAyBqePCUgUb2QmwmUp2pPy2j8L4qESdEyojAfjdmmn3XFifxDEVkOA1x6fubmZLyC6kHhxWlYY4oVT9Aho95v4vdk8vqBG7QxKPMd3gmrFSdRycvUY_9hOvXwZux4beC1d1T9Pbtizh-yVEt7u5VWKg09LuycK13sZKofe_CSugl0n7LLB1h7GN4GE1ZTJO1av3VgovO6U-CIuQ2K_KOydY5dDHFe-t_vGcHTQJTOwYYgBiIWmIQevI3RnsuBe1DJqgiN-P1nv8s-6XIAy2nmDKISwOGBg-3Sm9Nep7ymIGCD4_5QsYXni2SdFa6xjz88hNpt7XpTJfJxdrfaqA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/accounts-chain",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"accounts-chain"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Transactions",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJNYWluIiwib3JnIjoidG9yY2hiZWFyZXJzLmNvbSIsImlzcyI6Imh0dHBzOi8vYXBpLnNhbmRib3gubmF0d2VzdC5jb20iLCJ0b2tlbl90eXBlIjoiQUNDRVNTX1RPS0VOIiwiZXh0ZXJuYWxfY2xpZW50X2lkIjoiM2U1elRLUXhvYXQyWi1pTWVhV0ktQTRvbVhnZk5Rb1pQSWk0UmJvYVdXMD0iLCJjbGllbnRfaWQiOiJiZTRkNTk3OC1mODE0LTQ5NzUtOWY4Ni00NjEzNjMwYmExMmYiLCJtYXhfYWdlIjo4NjQwMCwiYXVkIjoiYmU0ZDU5NzgtZjgxNC00OTc1LTlmODYtNDYxMzYzMGJhMTJmIiwidXNlcl9pZCI6IjEyMzQ1Njc4OTAxMkB0b3JjaGJlYXJlcnMuY29tIiwiZ3JhbnRfaWQiOiJmODhiNjU5NS1hZjZjLTQzMzctYTI4OS04MDliM2E1N2ZhYWQiLCJzY29wZSI6ImFjY291bnRzIG9wZW5pZCIsImNvbnNlbnRfcmVmZXJlbmNlIjoiNjliNmViMjYtYjgwYS00NDJkLWEyZDMtMDc1NzlkYTZiNjU1IiwiZXhwIjoxNzIyNDk0MDU2LCJpYXQiOjE3MjI0OTM0NTYsImp0aSI6IjYzZTI1MDUyLTgzMmUtNDQwNy1hNTQwLThhY2YyNTg5M2I3ZiIsInRlbmFudCI6Ik5hdFdlc3QifQ.O13l7csBvi9YpmCcD0mBNcTtYjWpJS57Gy1LIVdfrbYGF1eUc7kdkcnGAGHufp0kKe4yGdMgHgWZf0VLr33D-7aa8-XnNN1bsCkgegJZ8m80oLzWuj5yGBkausQKQJ8q9FLrhClkfYkxfQV8lKB2wMKfnTQu797DIk-sb8sDCxOtlcm7LEcLwAHNqIREK8CRyZJLSd-M607HaRRrryKJzKhj_OFYI-8l_VDZ7uSO6XxPV3n9zVP8JQDC4mkcaWuQsqpkJ64O9SgOUWUpmrvIW1QZIUB5pSOUY9F4QUnx_-iJRe6e3yQ0tewf1mlBg9vNs7Qz9KpQ93i7tX68qmqaAw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/accounts/facb0fbf-ad37-41f9-ba5e-6fbabf774de3/transactions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"accounts",
+						"facb0fbf-ad37-41f9-ba5e-6fbabf774de3",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
