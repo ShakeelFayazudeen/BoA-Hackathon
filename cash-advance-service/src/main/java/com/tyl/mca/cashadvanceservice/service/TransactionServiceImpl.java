@@ -10,6 +10,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.OptionalDouble;
 
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
@@ -43,6 +44,18 @@ public class TransactionServiceImpl implements TransactionService {
 
         ResponseEntity<AccountTransactionsResponse> response = restTemplate
                 .exchange(uriComponentsBuilder.buildAndExpand(urlParams).toUri(), HttpMethod.GET, requestEntity, AccountTransactionsResponse.class);
+
+        double sumOfTransactions = response.getBody().getData().getTransactions()
+                .stream()
+                .mapToDouble(accountTransaction -> Double.valueOf(accountTransaction.getAmount().getAmount())).sum();
+
+        OptionalDouble averageTransaction = response.getBody().getData().getTransactions()
+                .stream()
+                .mapToDouble(accountTransaction -> Double.valueOf(accountTransaction.getAmount().getAmount())).average();
+
+        response.getBody().setTotalTransactionAmount(sumOfTransactions);
+        response.getBody().setAverageTransactionPerMonth(averageTransaction.getAsDouble());
+
         return response.getBody();
     }
 }

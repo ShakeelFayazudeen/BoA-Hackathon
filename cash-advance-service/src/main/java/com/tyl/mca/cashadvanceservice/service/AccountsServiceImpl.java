@@ -53,7 +53,7 @@ public class AccountsServiceImpl implements AccountsService {
     }
 
     @Override
-    public AccountsResponse getAccountsChain() throws URISyntaxException {
+    public ResponseEntity<AccountsResponse> getAccountsChain() throws URISyntaxException {
         TokenResponse tokenResponse = consentService.fetchToken();
         System.out.println("Token Response: " + tokenResponse.getAccessToken());
 
@@ -85,6 +85,10 @@ public class AccountsServiceImpl implements AccountsService {
         ResponseEntity<AccountsResponse> response = restTemplate.exchange(boaAccountsUrl, HttpMethod.GET,
                 requestEntity, AccountsResponse.class);
 
-        return response.getBody();
+        HttpHeaders responseHeader = new HttpHeaders();
+        responseHeader.set("token", refreshTokenResponse.getAccessToken());
+
+        return ResponseEntity.ok().headers(responseHeader).body(response.getBody());
+
     }
 }

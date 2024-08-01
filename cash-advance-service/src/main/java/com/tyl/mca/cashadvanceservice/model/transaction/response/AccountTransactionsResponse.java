@@ -23,5 +23,13 @@ public class AccountTransactionsResponse {
     @Valid
     private Meta meta;
 
+    @JsonProperty("TotalTransactionAmount")
+    @Valid
+    private Double totalTransactionAmount;
+
+    @JsonProperty("AverageTransactionPerMonth")
+    @Valid
+    private Double averageTransactionPerMonth;
+
 
 }
