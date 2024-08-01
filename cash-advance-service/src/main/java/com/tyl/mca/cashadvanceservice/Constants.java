@@ -8,6 +8,7 @@ public class Constants {
     public static final String SCOPE = "scope";
     public static final String RESPONSE_TYPE = "response_type";
     public static final String REDIRECT_URI = "redirect_uri";
+    public static final String ACCOUNT_ID = "accountId";
     public static final String STATE = "state";
     public static final String REQUEST = "request";
     public static final String CODE = "code";

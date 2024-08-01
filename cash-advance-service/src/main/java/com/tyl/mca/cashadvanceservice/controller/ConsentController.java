@@ -1,14 +1,11 @@
 package com.tyl.mca.cashadvanceservice.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.tyl.mca.cashadvanceservice.model.RefreshTokenResponse;
 import com.tyl.mca.cashadvanceservice.model.TokenResponse;
-import com.tyl.mca.cashadvanceservice.model.accounts.response.AccountsResponse;
 import com.tyl.mca.cashadvanceservice.model.consent.request.AccountAccessConsentPayload;
 import com.tyl.mca.cashadvanceservice.model.consent.response.AccountAccessConsentResponsePayload;
 import com.tyl.mca.cashadvanceservice.model.consent.response.AuthorizeConsentPayload;
 import com.tyl.mca.cashadvanceservice.model.consent.response.AuthorizeConsentResponse;
-import com.tyl.mca.cashadvanceservice.service.AccountsService;
 import com.tyl.mca.cashadvanceservice.service.ConsentService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.LogManager;
@@ -30,9 +27,6 @@ public class ConsentController {
 
     @Autowired
     private ConsentService consentService;
-
-    @Autowired
-    private AccountsService accountsService;
 
     @GetMapping("/token")
     public ResponseEntity<TokenResponse> fetchToken() {
@@ -58,14 +52,4 @@ public class ConsentController {
         return new ResponseEntity<>(consentService.fetchRefreshToken(code), HttpStatus.OK);
     }
 
-    @GetMapping("/accounts")
-    public ResponseEntity<AccountsResponse> getAccounts(@RequestHeader(value = "Authorization") String authorization) {
-        String token = httpServletRequest.getHeader("Authorization");
-        return new ResponseEntity<>(accountsService.getAccounts(token), HttpStatus.OK);
-    }
-
-    @GetMapping("/accounts-chain")
-    public ResponseEntity<AccountsResponse> getAccountsChain() throws URISyntaxException {
-        return new ResponseEntity<>(accountsService.getAccountsChain(), HttpStatus.OK);
-    }
 }
