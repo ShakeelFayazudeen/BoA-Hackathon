@@ -35,6 +35,6 @@ public class AccountsController {
 
     @GetMapping("/accounts-chain")
     public ResponseEntity<AccountsResponse> getAccountsChain() throws URISyntaxException {
-        return accountsService.getAccountsChain();
+        return new ResponseEntity<>(accountsService.getAccountsChain(), HttpStatus.OK);
     }
 }

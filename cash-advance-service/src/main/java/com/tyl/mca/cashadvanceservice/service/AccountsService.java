@@ -9,6 +9,6 @@ public interface AccountsService {
 
     AccountsResponse getAccounts(String token) ;
 
-    ResponseEntity<AccountsResponse> getAccountsChain() throws URISyntaxException;
+    AccountsResponse getAccountsChain() throws URISyntaxException;
 
 }

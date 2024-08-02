@@ -28,5 +28,8 @@ public class AccountsResponse {
     @Valid
     private Meta meta;
 
+    @JsonProperty("token")
+    @Valid
+    private String token;
 
 }
